@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Fatima | A Little World of Happiness</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .music-welcome-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            text-align: center;
+            background: linear-gradient(135deg, #35172d, #70294f, #e84393);
+            opacity: 1;
+            visibility: visible;
+            transition: opacity .9s ease, visibility .9s ease;
+        }
+
+        .music-welcome-screen.is-hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .music-welcome-content {
+            width: min(100%, 450px);
+            color: #fff;
+            animation: musicWelcomeAppear 1s ease both;
+        }
+
+        .music-welcome-content .welcome-heart {
+            font-size: 72px;
+            animation: musicHeartBeat 1.5s ease-in-out infinite;
+        }
+
+        .music-welcome-content h1 {
+            margin: 20px 0;
+            color: #ffd6e8;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 6vw, 2.7rem);
+        }
+
+        .music-welcome-content p {
+            margin-bottom: 28px;
+            color: #fff0f6;
+        }
+
+        .music-welcome-content button {
+            border: 0;
+            border-radius: 30px;
+            padding: 14px 34px;
+            background: #ff9acb;
+            color: #42132d;
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform .25s ease, background .25s ease;
+        }
+
+        .music-welcome-content button:hover {
+            transform: scale(1.06);
+            background: #ffd6e8;
+        }
+
+        .music-welcome-content button:disabled {
+            cursor: wait;
+            opacity: .75;
+        }
+
+        .music-welcome-content span {
+            display: block;
+            margin-top: 24px;
+            color: #ffd6e8;
+            font-size: .85rem;
+        }
+
+        @keyframes musicHeartBeat {
+            50% { transform: scale(1.13); }
+        }
+
+        @keyframes musicWelcomeAppear {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background Decorations -->
+    <div class="floating-hearts" aria-hidden="true">
+        <span>♡</span>
+        <span>✦</span>
+        <span>♡</span>
+        <span>✧</span>
+        <span>♡</span>
+    </div>
+
+    <!-- Welcome Screen -->
+    <section class="welcome-screen" id="home">
+        <nav class="navbar">
+            <div class="logo">for my favourite human ♡</div>
+            <a href="#memories" class="nav-link">Our Memories</a>
+        </nav>
+
+        <div class="hero-content">
+            <p class="eyebrow">A LITTLE SURPRISE FOR SOMEONE SPECIAL</p>
+
+            <h1>
+                Happy Birthday,
+                <span>Fatima!</span>
+            </h1>
+
+            <p class="hero-description">
+                A little corner of the internet, made with lots of love,
+                just for you.
+            </p>
+
+            <div class="characters">
+                <img src="assets/images/penguin.jpg"
+                     alt="Cute penguin"
+                     class="animal-image penguin">
+
+                <span class="heart">💗</span>
+
+                <img src="assets/images/rabbit.jpg"
+                     alt="Cute rabbit"
+                     class="animal-image rabbit">
+            </div>
+
+            <a href="#surprises" class="main-button">
+                Open Your Surprise ✨
+            </a>
+
+            <p class="small-note">Made with love, from your penguin ♡</p>
+        </div>
+    </section>
+
+    <!-- Three Magical Surprises -->
+    <section class="surprise-section" id="surprises">
+        <p class="eyebrow">A LITTLE MAGIC FOR YOU</p>
+        <h2>Three Little Surprises 🎁</h2>
+
+        <p class="surprise-subtitle">
+            Pick a gift, open it, and discover what's inside! 💗
+        </p>
+
+        <div class="gift-container">
+
+            <div class="gift-item" onclick="openGift(1)">
+                <div class="gift" id="gift1">
+                    <div class="gift-lid"></div>
+                    <div class="gift-bow">🎀</div>
+                    <div class="gift-body">
+                        <div class="gift-ribbon"></div>
+                    </div>
+                </div>
+                <h3>Gift One</h3>
+                <p>Open me! 💗</p>
+            </div>
+
+            <div class="gift-item" onclick="openGift(2)">
+                <div class="gift" id="gift2">
+                    <div class="gift-lid"></div>
+                    <div class="gift-bow">🎀</div>
+                    <div class="gift-body">
+                        <div class="gift-ribbon"></div>
+                    </div>
+                </div>
+                <h3>Gift Two</h3>
+                <p>Something special! 💌</p>
+            </div>
+
+            <div class="gift-item" onclick="openGift(3)">
+                <div class="gift" id="gift3">
+                    <div class="gift-lid"></div>
+                    <div class="gift-bow">🎀</div>
+                    <div class="gift-body">
+                        <div class="gift-ribbon"></div>
+                    </div>
+                </div>
+                <h3>Gift Three</h3>
+                <p>One last surprise! 🐰</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Gift Reveal Screen -->
+    <div class="surprise-overlay" id="surpriseOverlay">
+        <div class="surprise-content" id="surpriseContent">
+            <button class="close-surprise" onclick="closeGift()">×</button>
+
+            <div class="reveal-icon" id="revealIcon">💗</div>
+
+            <p class="eyebrow">A LITTLE SOMETHING FOR YOU</p>
+
+            <h2 id="revealTitle">A Special Surprise</h2>
+
+            <p id="revealMessage"></p>
+
+            <button class="surprise-close-btn" onclick="closeGift()">
+                Back to gifts ♡
+            </button>
+        </div>
+    </div>
+
+    <!-- Memories -->
+    <section class="memories-section" id="memories">
+        <p class="eyebrow">LITTLE MOMENTS, BIG MEMORIES</p>
+        <h2>Our Memory Gallery 📸</h2>
+
+        <p class="section-description">
+            Four little windows into memories worth keeping forever.
+        </p>
+
+        <div class="photo-gallery">
+            <div class="photo-card">
+                <img src="assets/images/fatima-photo-1.jpeg" alt="Fatima memory one">
+                <p>Pretty moments ♡</p>
+            </div>
+
+            <div class="photo-card">
+                <img src="assets/images/fatima-photo-2.jpeg" alt="Fatima memory two">
+                <p>Beautiful memories ✨</p>
+            </div>
+
+            <div class="photo-card">
+                <img src="assets/images/fatima-photo-3.jpeg" alt="Fatima memory three">
+                <p>My favourite human 💗</p>
+            </div>
+
+            <div class="photo-card">
+                <img src="assets/images/fatima-photo-4.jpeg" alt="Fatima memory four">
+                <p>Always special 🌷</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Birthday Letter -->
+    <section class="letter-section">
+        <p class="eyebrow">A MESSAGE FROM YOUR PENGUIN</p>
+        <h2>Dear Fatima, 💌</h2>
+
+        <div class="letter-card">
+            <p>Happy Birthday, Fatima! 🥹💕</p>
+
+      <p>
+    Sometimes I wonder how a friendship can become filled
+    with so many little moments that stay in your heart.
+</p>
+
+<p>
+    I still think about our hand-holding story. There was
+    a time when you would hold my hand and I would let it go.
+    And look at us now! I'm the one asking for your hand first.
+    😂 Who would have thought things would turn out this way?
+</p>
+
+<p>
+    And honestly, I'm still learning how to handle my jealousy.
+    Sometimes I go quiet, sometimes I tease you, and sometimes
+    I pretend nothing bothers me. But you probably notice more
+    than I think you do. Those moments when you hold my hand
+    a little tighter mean more to me than you realise.
+</p>
+
+<p>
+    I also remember when you told me,
+    <strong>"Love exist kerta hai."</strong>
+    Maybe you don't know how much that sentence made me think.
+    I have my own way of believing in love, and our friendship
+    has given me so many little moments to think about what
+    it means to care for someone.
+</p>
+
+<p>
+    And my favourite little identity in our story?
+    <strong>Penguin. 🐧</strong> You chose that nickname
+    for me yourself, and now it's something that makes me
+    smile whenever I think about it.
+</p>
+
+<p>
+    I asked about your favourite colours, rabbits, and
+    favourite song because I wanted this little surprise
+    to include things you love. I wanted to make something
+    that feels a little more like you.
+</p>
+
+<p>
+    I don't know what the future holds or how life will
+    change, but I genuinely hope it brings you beautiful
+    things. May you achieve everything you dream of,
+    laugh without holding back, and always feel valued.
+</p>
+
+<p>
+    Thank you for the laughs, the teasing, the hand-holding,
+    the little moments, and even the moments when my
+    jealousy gets the better of me. 😂
+</p>
+
+<p>
+    I also want to tell you something honestly. I have never
+    said that you are jealous, but whenever you say,
+    <strong>"I am never jealous,"</strong> it hurts me the most.
+    I never understand why you keep telling me that. Is it
+    because you don't want me to have these kinds of
+    expectations from you? I genuinely want to understand
+    what you mean because those words make me feel bad.
+</p>
+
+<p>
+    And I'm truly sorry for the rude words I used last night.
+    I know I hurt you, and I regret speaking that way.
+    Whatever I was feeling, I should have expressed it more
+    gently. You didn't deserve to be hurt by my words.
+    Please accept my sincere apology.
+</p>
+
+<p>
+    Happy Birthday once again, Fatima.
+    Stay happy, stay a little crazy, and never stop being you.
+</p>
+            <p class="signature">
+                With lots of love,<br>
+                Your Penguin 🐧💗
+            </p>
+        </div>
+    </section>
+
+    <!-- Favourite Things -->
+    <section class="favourites-section">
+        <p class="eyebrow">A FEW OF YOUR FAVOURITE THINGS</p>
+        <h2>Because I Asked You 🤭 ♡</h2>
+
+        <div class="favourites-grid">
+            <div class="favourite-card">
+                <span>🐰</span>
+                <h3>Favourite Animal</h3>
+                <p>Little Bunnies</p>
+            </div>
+
+            <div class="favourite-card">
+                <span>🎵</span>
+                <h3>Favourite Song</h3>
+                <p>Alfaz</p>
+            </div>
+
+            <div class="favourite-card">
+                <span>🎨</span>
+                <h3>Favourite Colours</h3>
+                <p>Black • Blue • Pink</p>
+            </div>
+
+            <div class="favourite-card">
+                <span>🐧</span>
+                <h3>Your Penguin</h3>
+                <p>Always here!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Music -->
+    <section class="music-section">
+        <p class="eyebrow">A SONG FOR YOU</p>
+        <h2>Let's play your favourite 🎶</h2>
+
+        <div class="music-card">
+            <div class="music-icon">🎧</div>
+            <h3>Alfaz</h3>
+            <p>A little music, a little happiness.</p>
+
+            <audio controls>
+                <source src="assets/audio/alfaz.m4a" type="audio/mp4">
+                Your browser does not support audio.
+            </audio>
+        </div>
+    </section>
+
+    <!-- Music Welcome Screen -->
+    <div id="musicWelcomeScreen" class="music-welcome-screen">
+        <div class="music-welcome-content">
+            <div class="welcome-heart">💗</div>
+            <h1>A Little Surprise For You</h1>
+            <p>Someone made something special for you...</p>
+
+            <button type="button" id="startBirthdayBtn">
+                Tap to Begin ♡
+            </button>
+
+            <span id="musicStatus">Made with love, just for you 🎀</span>
+        </div>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="birthdayMusic" loop preload="auto">
+        <source src="assets/audio/alfaz.m4a" type="audio/mp4">
+    </audio>
+
+    <!-- Final Wish -->
+    <footer class="footer">
+        <div class="footer-characters">🐧 💗 🐰</div>
+
+        <h2>Keep smiling, birthday girl!</h2>
+
+        <p>You deserve all the happiness in the world.</p>
+
+        <p class="footer-date">26 November ♡</p>
+
+        <p class="copyright">
+            Made with endless love by your penguin.
+        </p>
+    </footer>
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>
